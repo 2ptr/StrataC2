@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ListenersDialog</class>
+ <widget class="QDialog" name="ListenersDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>381</width>
+    <height>533</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ListenersDialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* GLOBAL FONT &amp; BACKGROUND */
+QWidget {
+    background-color: #0D1117;
+    color: #E6F1FF;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    font-size: 11pt;
+    border: none;
+}
+
+/* INPUT FIELDS */
+QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox {
+    background-color: #161B22;
+    border: 1px solid #4C8EDA;
+    border-radius: 6px;
+    padding: 8px;
+    color: #E6F1FF;
+    font-size: 11.5pt;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QSpinBox:focus {
+    border: 1px solid #58A6FF;
+    background-color: #1B2330;
+}
+
+/* QSPINBOX ARROWS */
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #21262D;
+    subcontrol-origin: border;
+    border: 1px solid #4C8EDA;
+    width: 16px;
+    border-radius: 3px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #2C313C;
+    border-color: #58A6FF;
+}
+
+QSpinBox::up-arrow, QSpinBox::down-arrow {
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+QSpinBox::up-arrow {
+    border-bottom: 6px solid #E6F1FF;
+    margin: 2px;
+}
+
+QSpinBox::down-arrow {
+    border-top: 6px solid #E6F1FF;
+    margin: 2px;
+}
+
+/* BUTTONS */
+QPushButton {
+    background-color: #21262D;
+    color: #E6F1FF;
+    border: 1px solid #4C8EDA;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+QPushButton:hover {
+    background-color: #2C313C;
+    border-color: #58A6FF;
+}
+
+QPushButton:pressed {
+    background-color: #3B4452;
+}
+
+/* TABLES */
+QTableWidget, QTableView {
+    background-color: #121826;
+    alternate-background-color: #1B2330;
+    border: 1px solid #4C8EDA;
+    color: #E6F1FF;
+    gridline-color: #30363D;
+    selection-background-color: #264F78;
+    selection-color: #FFFFFF;
+    font-size: 10.5pt;
+}
+
+QTableWidget::item, QTableView::item {
+    padding: 4px;
+}
+
+QTableWidget::item:selected, QTableView::item:selected {
+    background-color: #264F78;
+    color: #FFFFFF;
+}
+
+/* HEADERS */
+QHeaderView::section {
+    background-color: #161B22;
+    color: #E6F1FF;
+    border: 1px solid #30363D;
+    padding: 6px;
+    font-size: 10pt;
+}
+
+/* LIST WIDGET */
+QListWidget {
+    background-color: #121826;
+    border: 1px solid #4C8EDA;
+    color: #E6F1FF;
+}
+
+QListWidget::item {
+    padding: 4px;
+}
+
+QListWidget::item:selected {
+    background-color: #264F78;
+    color: #FFFFFF;
+}
+
+/* SCROLLBARS */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background-color: #161B22;
+    border: none;
+    width: 12px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background-color: #4C8EDA;
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:hover {
+    background-color: #58A6FF;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+}
+
+/* COMBOBOXES */
+QComboBox {
+    background-color: #161B22;
+    border: 1px solid #4C8EDA;
+    border-radius: 4px;
+    padding: 6px;
+    color: #E6F1FF;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #0D1117;
+    selection-background-color: #264F78;
+    color: #E6F1FF;
+}
+
+/* TABS */
+QTabWidget::pane {
+    border: 1px solid #4C8EDA;
+    background-color: #121826;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+QTabBar::tab {
+    background-color: #21262D;
+    border: 1px solid #4C8EDA;
+    padding: 6px 12px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+    color: #E6F1FF;
+}
+
+QTabBar::tab:selected {
+    background-color: #264F78;
+    border-color: #58A6FF;
+}
+
+/* MESSAGE BOX */
+QMessageBox {
+    background-color: #121826;
+    color: #E6F1FF;
+    border: 1px solid #4C8EDA;
+}
+
+QMessageBox QLabel {
+    color: #E6F1FF;
+    font-size: 11pt;
+}
+
+QMessageBox QPushButton {
+    background-color: #21262D;
+    color: #E6F1FF;
+    border: 1px solid #4C8EDA;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #2C313C;
+    border-color: #58A6FF;
+}
+
+QMessageBox QPushButton:pressed {
+    background-color: #3B4452;
+}
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Fira Code</family>
+       <pointsize>11</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>New Listener</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>HTTP</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Listener Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="listenerNameBox">
+         <property name="text">
+          <string>Listener 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Bind Interface:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="bindInterfaceBox"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Bind Port:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="bindPortBox">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>65000</number>
+         </property>
+         <property name="value">
+          <number>443</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Agent Port:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="agentPortBox">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>65000</number>
+         </property>
+         <property name="value">
+          <number>443</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Agent Callbacks:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QTextEdit" name="agentCallbacksBox">
+         <property name="markdown">
+          <string>`http://127.0.0.1:443`
+
+`http://localhost:443`
+
+</string>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Fira Code','Consolas','Courier New','monospace'; font-size:11.5pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code','Consolas','monospace'; font-size:11pt;&quot;&gt;http://127.0.0.1:443&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:7px; margin-bottom:7px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code','Consolas','monospace'; font-size:11pt;&quot;&gt;http://localhost:443&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>www.constoso.com</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Azure</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
