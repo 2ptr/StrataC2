@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "../windows/teamserverwindow.h"
+#include "windows/teamserverwindow.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

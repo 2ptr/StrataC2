@@ -12,12 +12,12 @@
 #include "httplib.h"
 #include <QThread>
 
-class ListenerThread : public QThread {
+class HTTPListenerThread : public QThread {
     Q_OBJECT
 
 public:
     httplib::Server svr;
-    explicit ListenerThread(const char* address, int port, QObject *parent = nullptr)
+    explicit HTTPListenerThread(const char* address, int port, QObject *parent = nullptr)
         : QThread(parent), bind_address(address), bind_port(port) {}
 
     bool is_valid_bind() {
@@ -54,11 +54,11 @@ public:
     std::string name;
     std::string bind_address;
     int bind_port;
-    ListenerThread* listenerThread = nullptr;  // The QThread that runs the server
+    HTTPListenerThread* listenerThread = nullptr;  // The QThread that runs HTTP servers
 
-    bool tryStartListener() {
+    bool tryHttpStartListener() {
         // Create a thread
-        listenerThread = new ListenerThread(this->bind_address.c_str(), this->bind_port);
+        listenerThread = new HTTPListenerThread(this->bind_address.c_str(), this->bind_port);
         if (!listenerThread->is_valid_bind()) {
             return false;
         }

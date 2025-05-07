@@ -77,7 +77,7 @@ void ListenersDialog::on_buttonBox_accepted() {
         ui->bindInterfaceBox->currentText().toStdString(),
         ui->bindPortBox->value()
     );
-    if (potential_listener.tryStartListener()) {
+    if (potential_listener.tryHttpStartListener()) {
         main_window->g_Listeners.push_back(potential_listener);
         main_window->log_activity(
             "Started listener: " + ui->listenerNameBox->text().toStdString() +

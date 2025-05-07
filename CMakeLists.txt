@@ -14,7 +14,7 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(StrataC2 src/main.cpp
+add_executable(StrataC2 main.cpp
         windows/teamserverwindow.cpp
         windows/teamserverwindow.h
         windows/teamserverwindow.ui
@@ -25,21 +25,13 @@ add_executable(StrataC2 src/main.cpp
         components/TableWidgets.cpp
         components/TableWidgets.h
 )
-if(WIN32)
-    target_link_libraries(StrataC2
-        Qt::Core
-        Qt::Gui
-        Qt::Widgets
-        ws2_32
-        iphlpapi
-    )
-else ()
-    target_link_libraries(StrataC2
-            Qt::Core
-            Qt::Gui
-            Qt::Widgets
-    )
-endif()
+target_link_libraries(StrataC2
+    Qt::Core
+    Qt::Gui
+    Qt::Widgets
+    ws2_32
+    iphlpapi
+)
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX)
     if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
