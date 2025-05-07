@@ -16,6 +16,7 @@ class ListenersDialog : public QDialog {
 Q_OBJECT
 
 public:
+    Ui::ListenersDialog *ui;
     TeamserverWindow *main_window;
 
     void populate_fields();
@@ -26,9 +27,6 @@ public:
 private slots:
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
-
-private:
-    Ui::ListenersDialog *ui;
 };
 
 
