@@ -1,5 +1,6 @@
-![Strata](strata.png)
-
+<p align="center">
+  <img src="strata.png" width="300" />
+</p>
 # Strata C2
 
 A command-and-control framework written in C++ (Qt 6).
