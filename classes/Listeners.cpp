@@ -27,7 +27,7 @@ void HTTPListenerThread::run() {
                             full.metadata.user,
                             full.metadata.process,
                             full.metadata.ip);
-            new_agent.cmd_history.push_back("[*] Agent connected - " + full.metadata.id);
+            new_agent.cmd_history.push_back("[*] Agent connected - " + full.metadata.id + "\n");
             main_window->g_Agents.push_back(new_agent);
             main_window->log_activity("New Agent connected - " + full.metadata.id);
         } else {

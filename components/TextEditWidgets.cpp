@@ -34,7 +34,7 @@ void CommandsTextEdit::repopulateItems() {
 }
 
 std::string CommandsTextEdit::format_command(std::string command) {
-    if (command.find("[*]") != std::string::npos || command.find(">>>") != std::string::npos) {
+    if (command.find("[*]") != std::string::npos) {
         command = "<font color='gray'>" + command + "</font>\n";
     } else if (command.find("[+]") != std::string::npos) {
         command = "<font color='#12AD2B'>" + command + "</font>\n";
