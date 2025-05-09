@@ -3,8 +3,8 @@
 #include <string>
 #include "Callbacks.h"
 #include <QThread>
-#include "httplib.h"
-#include "json.hpp"
+#include "../lib/httplib.h"
+#include "../lib/json.hpp"
 #ifndef LISTENERS_H
 #define LISTENERS_H
 class TeamserverWindow;  // Forward declaration
@@ -17,9 +17,7 @@ class HTTPListenerThread : public QThread {
 
 public:
     httplib::Server svr;
-    TeamserverWindow *main_window;
-    explicit HTTPListenerThread(const char* address, int port, QObject *parent = nullptr)
-        : QThread(parent), bind_address(address), bind_port(port) {}
+    TeamserverWindow *main_window = nullptr;
 
     bool is_valid_bind() {
         // Try to bind the server
@@ -32,6 +30,9 @@ public:
     void setMainWindow(TeamserverWindow* mw) {
         main_window = mw;
     }
+
+    explicit HTTPListenerThread(const char* address, int port, QObject *parent = nullptr)
+        : QThread(parent), bind_address(address), bind_port(port) {}
 
 protected:
     // REQUEST HANDLING
@@ -49,7 +50,7 @@ class Listener {
 public:
     std::string name;
     std::string bind_address;
-    TeamserverWindow *main_window;
+    TeamserverWindow *main_window = nullptr;
     int bind_port;
     HTTPListenerThread* listenerThread = nullptr;  // The QThread that runs HTTP servers
 

@@ -1,8 +1,9 @@
+#pragma once
 #include <QString>
 #include <QWidget>
 #include <QHeaderView>
 #include <QTableWidgetItem>
-#include "../include/classes.h"
+#include "../classes/Agents.h"
 
 #include "../windows/teamserverwindow.h"
 

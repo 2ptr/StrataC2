@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 
-#include "../include/classes.h"
-#include "../include/Listeners.h"
+#include "../classes/Agents.h"
+#include "../classes/Listeners.h"
 #include "listenersdialog.h"
 
 QT_BEGIN_NAMESPACE
@@ -34,6 +34,12 @@ public:
 
 private slots:
     void on_createListenerButton_clicked();
+
+    void on_agentTable_itemClicked();
+
+    void on_commandLine_returnPressed();
+
+    void update_last_alive();
 };
 
 #endif //STRATAC2_TEAMSERVERWINDOW_H

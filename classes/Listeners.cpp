@@ -2,7 +2,7 @@
 
 #include "../windows/ui_TeamserverWindow.h"
 
-#include "classes.h"
+#include "Agents.h"
 #include "../windows/teamserverwindow.h"
 
 void HTTPListenerThread::run() {
@@ -15,9 +15,25 @@ void HTTPListenerThread::run() {
 
         // Convert the JSON to a CallbackFull object
         CallbackFull full = CallbackFull::from_json(json_data);
-        Agent new_agent = Agent(full.metadata.id, full.metadata.hostname, full.metadata.user, full.metadata.process, full.metadata.ip);
-        main_window->g_Agents.push_back(new_agent);
-        main_window->log_activity("New Agent connected - " + full.metadata.id);
+
+        // Does the Agent already exist?
+        auto it = std::ranges::find_if(main_window->g_Agents,
+                                       [&full](const Agent& a) { return a.id == full.metadata.id; });
+
+        if (it == main_window->g_Agents.end()) {
+            // Agent not found – add new
+            Agent new_agent(full.metadata.id,
+                            full.metadata.hostname,
+                            full.metadata.user,
+                            full.metadata.process,
+                            full.metadata.ip);
+            new_agent.cmd_history.push_back("[*] Agent connected - " + full.metadata.id);
+            main_window->g_Agents.push_back(new_agent);
+            main_window->log_activity("New Agent connected - " + full.metadata.id);
+        } else {
+            // Agent exists – reset last_alive
+            it->last_alive = 0;
+        }
         main_window->ui->agentTable->repopulateItems();
 
         // Respond with a JSON message

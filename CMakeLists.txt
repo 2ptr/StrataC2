@@ -18,15 +18,17 @@ add_executable(StrataC2 main.cpp
         windows/teamserverwindow.cpp
         windows/teamserverwindow.h
         windows/teamserverwindow.ui
-        include/classes.h
+        classes/Agents.h
         windows/listenersdialog.cpp
         windows/listenersdialog.h
         windows/listenersdialog.ui
         components/TableWidgets.cpp
         components/TableWidgets.h
-        include/Listeners.h
-        include/Callbacks.h
-        include/Listeners.cpp
+        classes/Listeners.h
+        classes/Callbacks.h
+        classes/Listeners.cpp
+        components/TextEditWidgets.h
+        components/TextEditWidgets.cpp
 )
 target_link_libraries(StrataC2
     Qt::Core

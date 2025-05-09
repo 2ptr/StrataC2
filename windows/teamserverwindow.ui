@@ -526,7 +526,7 @@ border: 1px solid #444;
      </widget>
     </item>
     <item row="4" column="0">
-     <widget class="QTextEdit" name="cmdsTextEdit">
+     <widget class="CommandsTextEdit" name="cmdsTextEdit">
       <property name="html">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -605,6 +605,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <extends>QTableWidget</extends>
    <header>../../../components/TableWidgets.h</header>
   </customwidget>
+ <customwidget>
+     <class>CommandsTextEdit</class>
+     <extends>QTextEdit</extends>
+     <header>../../../components/TextEditWidgets.h</header>
+ </customwidget>
  </customwidgets>
  <resources/>
  <connections/>
