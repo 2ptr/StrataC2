@@ -6,224 +6,256 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1223</width>
+    <width>1329</width>
     <height>867</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TeamserverWindow</string>
+   <string>Strata C2</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/* === Global Base === */
 * {
-    font-family: &quot;Fira Code&quot;, &quot;Consolas&quot;, monospace;
-    font-size: 12pt;
-    color: #c0c0c0;
+    font-family: &quot;Consolas&quot;, &quot;JetBrains Mono&quot;, &quot;monospace&quot;;
+    font-size: 11pt;
+    color: #dcdcdc;
+    background: none;
 }
 
-/* === Main Window Gradient === */
-QMainWindow {
-    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                                stop:0 #2a2f2a, stop:1 #303d30);
-}
-
-/* === QWidget default === */
-QWidget {
-    background-color: #2b2f2b;
+/* === Main Background === */
+QMainWindow, QWidget {
+    background-color: #1e1e1e;
     border: none;
 }
 
 /* === QMenuBar === */
 QMenuBar {
-    background-color: #2b2f2b;
-    color: #c0c0c0;
-    font-size: 11pt;
-    padding: 2px;
+    background-color: #252526;
+    color: #dcdcdc;
+    padding: 4px;
 }
 QMenuBar::item {
-    padding: 2px 22px;
-    font-size: 11pt;
+    padding: 6px 12px;
 }
 QMenuBar::item:selected {
-    background-color: #4d5e4d;
-    color: #ffffff;
+    background-color: #007acc;
+    color: white;
 }
 
 /* === QMenu === */
 QMenu {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
+    background-color: #2d2d30;
+    color: #dcdcdc;
+    border: 1px solid #3c3c3c;
 }
 QMenu::item:selected {
-    background-color: #5a6d5a;
-    color: #ffffff;
+    background-color: #007acc;
+    color: white;
 }
 
 /* === QPushButton === */
 QPushButton {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
-    border-radius: 5px;
+    background-color: #3c3c3c;
+    border: 1px solid #555;
     padding: 6px 12px;
+    color: #dcdcdc;
 }
 QPushButton:hover {
-    background-color: #4d5e4d;
+    background-color: #444;
 }
 QPushButton:pressed {
-    background-color: #2a2f2a;
-    border-color: #78a378;
+    background-color: #222;
 }
 QPushButton:disabled {
-    background-color: #4d5e4d;
-    color: #888;
+    background-color: #2a2a2a;
+    color: #777;
     border-color: #444;
 }
 
 /* === QLineEdit / QTextEdit === */
 QLineEdit, QTextEdit {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
-    border-radius: 4px;
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #ffffff;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
     padding: 4px;
-    selection-background-color: #5a6d5a;
-    selection-color: #000;
 }
 
-/* === QTableWidget === */
-QTableWidget {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
-    gridline-color: #495e49;
-    selection-background-color: #5a6d5a;
-    selection-color: #000;
+/* === QPlainTextEdit (e.g., console output) === */
+QPlainTextEdit {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #ffffff;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
+}
+
+/* === QTableWidget / QTableView === */
+QTableWidget, QTableView {
+    background-color: #262626;
+    color: #ffffff;
+    border: 1px solid #444;
+    gridline-color: #666;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
+    alternate-background-color: #1e1e1e;
 }
 QHeaderView::section {
-    background-color: #4d5e4d;
-    color: #c0c0c0;
-    border: 1px solid #495e49;
+    background-color: #333;
+    color: #dcdcdc;
+    border: 1px solid #444;
     padding: 4px;
 }
-QTableCornerButton::section {
-    background: #4d5e4d;
-    border: 1px solid #495e49;
+
+/* === QListWidget / QListView === */
+QListWidget, QListView {
+    background-color: #262626;
+    border: 1px solid #444;
+    color: #ffffff;
+}
+QListWidget::item:selected, QListView::item:selected {
+    background-color: #007acc;
+    color: #ffffff;
 }
 
 /* === QTabWidget === */
 QTabWidget::pane {
-    border: 2px solid #5a6d5a;
+    border: 1px solid #3c3c3c;
+    padding: 4px;
 }
 QTabBar::tab {
-    background: #3a453a;
-    border: 1px solid #4d5e4d;
-    padding: 6px 14px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    background-color: #2d2d30;
+    color: #dcdcdc;
+    padding: 6px 12px;
+    border: 1px solid #3c3c3c;
+    border-bottom: none;
 }
 QTabBar::tab:selected {
-    background: #5a6d5a;
+    background-color: #1e1e1e;
+    color: white;
+    border: 1px solid #007acc;
+    border-bottom: none;
+}
+QTabBar::tab:hover {
+    background-color: #383838;
+}
+
+/* === QToolBar === */
+QToolBar {
+    background-color: #2d2d30;
+    border-bottom: 1px solid #3c3c3c;
+    spacing: 6px;
+}
+QToolButton {
+    background-color: #2d2d30;
+    border: none;
+    padding: 6px;
+    margin: 2px;
+    color: #dcdcdc;
+}
+QToolButton:hover {
+    background-color: #3a3a3a;
+}
+QToolButton:pressed {
+    background-color: #007acc;
     color: #ffffff;
-    font-weight: bold;
-    border: 1px solid #78a378;
 }
 
 /* === QScrollBar === */
 QScrollBar:vertical, QScrollBar:horizontal {
-    background: #2a2f2a;
+    background: #1e1e1e;
     border: none;
+    margin: 0px;
     width: 12px;
+    height: 12px;
 }
-QScrollBar::handle {
-    background: #5a6d5a;
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #555;
+    min-height: 20px;
+    min-width: 20px;
     border-radius: 6px;
 }
 QScrollBar::handle:hover {
-    background: #78a378;
+    background: #007acc;
 }
 QScrollBar::add-line, QScrollBar::sub-line {
+    height: 0px;
+    width: 0px;
+}
+QScrollBar::add-page, QScrollBar::sub-page {
     background: none;
-    border: none;
+}
+
+/* === QCheckBox === */
+QCheckBox {
+    color: #dcdcdc;
+}
+QCheckBox::indicator {
+    width: 14px;
+    height: 14px;
+}
+QCheckBox::indicator:unchecked {
+    border: 1px solid #555;
+    background-color: #2a2a2a;
+}
+QCheckBox::indicator:checked {
+    background-color: #007acc;
+    border: 1px solid #007acc;
 }
 
 /* === QComboBox === */
 QComboBox {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
-    border-radius: 4px;
+    background-color: #2a2a2a;
+    border: 1px solid #555;
     padding: 4px;
+    color: #ffffff;
+}
+QComboBox:hover {
+    border: 1px solid #007acc;
 }
 QComboBox::drop-down {
-    border-left: 1px solid #495e49;
-    background: #4d5e4d;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left: 1px solid #555;
+    background-color: #2a2a2a;
 }
 QComboBox QAbstractItemView {
-    background-color: #4d5e4d;
-    border: 1px solid #5a6d5a;
-    selection-background-color: #5a6d5a;
-    selection-color: #000;
+    background-color: #262626;
+    color: #ffffff;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
 }
 
-/* === QListWidget / QTreeView === */
-QListWidget, QTreeView {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
+/* === QGroupBox === */
+QGroupBox {
+    border: 1px solid #3c3c3c;
+    margin-top: 20px;
 }
-QListWidget::item:selected, QTreeView::item:selected {
-    background-color: #5a6d5a;
-    color: #000;
-    font-weight: bold;
-}
-
-/* === QSpinBox === */
-QSpinBox {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
-    border-radius: 4px;
-    padding-right: 20px;
-    color: #c0c0c0;
-}
-QSpinBox::up-button, QSpinBox::down-button {
-    background-color: #3b453b;
-    border: 1px solid #5a6d5a;
-    width: 16px;
-    subcontrol-origin: border;
-}
-QSpinBox::up-button {
-    subcontrol-position: top right;
-    border-top-right-radius: 4px;
-}
-QSpinBox::down-button {
-    subcontrol-position: bottom right;
-    border-bottom-right-radius: 4px;
-}
-QSpinBox::up-button:hover, QSpinBox::down-button:hover {
-    background-color: #4d5e4d;
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 4px;
+    color: #dcdcdc;
 }
 
-/* === QLabel === */
-QLabel {
-    color: #c0c0c0;
-}
-
-/* === ToolTip === */
-QToolTip {
-    background-color: #5a6d5a;
-    color: #000;
-    border: 1px solid #78a378;
-    padding: 4px;
-    border-radius: 4px;
+Line{
+color:white;
+border: 1px solid #444;
 }
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout" columnstretch="17,3,3">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="18,3,3,3">
     <property name="leftMargin">
-     <number>15</number>
+     <number>35</number>
     </property>
     <property name="topMargin">
      <number>10</number>
     </property>
     <property name="rightMargin">
-     <number>15</number>
+     <number>35</number>
     </property>
     <property name="bottomMargin">
      <number>10</number>
@@ -232,40 +264,105 @@ QToolTip {
      <number>25</number>
     </property>
     <property name="verticalSpacing">
-     <number>10</number>
+     <number>15</number>
     </property>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_2">
+    <item row="3" column="0">
+     <widget class="QLabel" name="agentLabel">
       <property name="font">
        <font>
-        <family>Fira Code</family>
-        <pointsize>12</pointsize>
+        <family>Consolas</family>
+        <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Sunken</enum>
+      </property>
       <property name="text">
-       <string>Agents</string>
+       <string>Agent : None</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="0" column="1" colspan="2">
-     <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <family>Fira Code</family>
-        <pointsize>12</pointsize>
-        <bold>true</bold>
-       </font>
+    <item row="1" column="2" colspan="2">
+     <widget class="ListenerTableWidget" name="listenersTable">
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
       </property>
-      <property name="text">
-       <string>Listeners</string>
+      <property name="editTriggers">
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
       </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::PenStyle::NoPen</enum>
+      </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>35</number>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Interface</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Port</string>
+       </property>
+      </column>
      </widget>
     </item>
     <item row="1" column="0" rowspan="2">
@@ -347,125 +444,29 @@ QToolTip {
       </column>
      </widget>
     </item>
-    <item row="1" column="1" colspan="2">
-     <widget class="ListenerTableWidget" name="listenersTable">
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-      </property>
-      <property name="tabKeyNavigation">
-       <bool>false</bool>
-      </property>
-      <property name="showDropIndicator" stdset="0">
-       <bool>false</bool>
-      </property>
-      <property name="dragDropOverwriteMode">
-       <bool>false</bool>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
-      </property>
-      <property name="gridStyle">
-       <enum>Qt::PenStyle::NoPen</enum>
-      </property>
-      <property name="rowCount">
-       <number>0</number>
-      </property>
-      <property name="columnCount">
-       <number>3</number>
-      </property>
-      <attribute name="horizontalHeaderCascadingSectionResizes">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>50</number>
-      </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>50</number>
-      </attribute>
-      <attribute name="horizontalHeaderHighlightSections">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderCascadingSectionResizes">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>35</number>
-      </attribute>
-      <attribute name="verticalHeaderStretchLastSection">
-       <bool>false</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Interface</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Port</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="createListenerButton">
-      <property name="text">
-       <string>Create</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="deleteListenerButton">
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="agentLabel">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
-        <family>Fira Code</family>
-        <pointsize>12</pointsize>
+        <family>Consolas</family>
+        <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
       </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Sunken</enum>
-      </property>
       <property name="text">
-       <string>Agent : None</string>
+       <string>Agents</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="3" column="1" colspan="2">
+    <item row="3" column="2" colspan="2">
      <widget class="QLabel" name="label_4">
       <property name="font">
        <font>
-        <family>Fira Code</family>
-        <pointsize>12</pointsize>
+        <family>Consolas</family>
+        <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -477,21 +478,31 @@ QToolTip {
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QTextEdit" name="cmdsTextEdit">
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Fira Code','Consolas','monospace'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code','Consolas','Courier New','monospace'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <item row="0" column="2" colspan="2">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <family>Consolas</family>
+        <pointsize>11</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Listeners</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="4" column="1" rowspan="2" colspan="2">
+    <item row="2" column="2">
+     <widget class="QPushButton" name="createListenerButton">
+      <property name="text">
+       <string>Create</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2" rowspan="2" colspan="2">
      <widget class="QListWidget" name="activityList">
       <property name="isWrapping" stdset="0">
        <bool>false</bool>
@@ -514,6 +525,34 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </item>
+    <item row="4" column="0">
+     <widget class="QTextEdit" name="cmdsTextEdit">
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Consolas','JetBrains Mono','monospace'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code','Consolas','Courier New','monospace'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="deleteListenerButton">
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" rowspan="5">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -522,21 +561,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1223</width>
-     <height>27</height>
+     <width>1329</width>
+     <height>39</height>
     </rect>
    </property>
    <property name="defaultUp">
     <bool>false</bool>
    </property>
-   <widget class="QMenu" name="menu_Strata_C2">
-    <property name="acceptDrops">
-     <bool>false</bool>
-    </property>
-    <property name="title">
-     <string>Strata C2</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuPayloads">
     <property name="title">
      <string>Payloads</string>
@@ -549,7 +580,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="actionImport_Assembly"/>
    </widget>
-   <addaction name="menu_Strata_C2"/>
    <addaction name="menuPayloads"/>
    <addaction name="menuArmory"/>
   </widget>

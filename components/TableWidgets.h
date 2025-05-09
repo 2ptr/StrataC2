@@ -2,7 +2,7 @@
 #include <QWidget>
 #include <QHeaderView>
 #include <QTableWidgetItem>
-#include "../include/types.h"
+#include "../include/classes.h"
 
 #include "../windows/teamserverwindow.h"
 
@@ -117,12 +117,30 @@ public:
         setRowCount(0);
         // Access AGENTS from the main window
         for (Agent& agent : mainWindow->g_Agents) {
-            insertRow(0);
-            setItem(0, 0, new AgentTableWidgetItem(&agent, QString::fromStdString(agent.id)));
-            setItem(0, 1, new AgentTableWidgetItem(&agent, QString::fromStdString(agent.hostname)));
-            setItem(0, 2, new AgentTableWidgetItem(&agent, QString::fromStdString(agent.user)));
-            setItem(0, 3, new AgentTableWidgetItem(&agent, QString::fromStdString(agent.process)));
-            setItem(0, 4, new AgentTableWidgetItem(&agent, QString::fromStdString(agent.ip)));
+            int row = rowCount();  // Append at the end
+            insertRow(row);
+
+            QTableWidgetItem* idItem       = new AgentTableWidgetItem(&agent, QString::fromStdString(agent.id));
+            QTableWidgetItem* hostItem     = new AgentTableWidgetItem(&agent, QString::fromStdString(agent.hostname));
+            QTableWidgetItem* userItem     = new AgentTableWidgetItem(&agent, QString::fromStdString(agent.user));
+            QTableWidgetItem* processItem  = new AgentTableWidgetItem(&agent, QString::fromStdString(agent.process));
+            QTableWidgetItem* ipItem       = new AgentTableWidgetItem(&agent, QString::fromStdString(agent.ip));
+            QTableWidgetItem* lastSeenItem       = new AgentTableWidgetItem(&agent, QString::number(agent.last_alive));
+
+            // Align center
+            idItem->setTextAlignment(Qt::AlignCenter);
+            hostItem->setTextAlignment(Qt::AlignCenter);
+            userItem->setTextAlignment(Qt::AlignCenter);
+            processItem->setTextAlignment(Qt::AlignCenter);
+            ipItem->setTextAlignment(Qt::AlignCenter);
+            lastSeenItem->setTextAlignment(Qt::AlignCenter);
+
+            setItem(row, 0, idItem);
+            setItem(row, 1, hostItem);
+            setItem(row, 2, userItem);
+            setItem(row, 3, processItem);
+            setItem(row, 4, ipItem);
+            setItem(row, 5, lastSeenItem);
         }
     }
 };

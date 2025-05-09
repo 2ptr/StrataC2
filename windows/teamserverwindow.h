@@ -5,7 +5,8 @@
 #include <vector>
 #include <string>
 
-#include "../include/types.h"
+#include "../include/classes.h"
+#include "../include/Listeners.h"
 #include "listenersdialog.h"
 
 QT_BEGIN_NAMESPACE
