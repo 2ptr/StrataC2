@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="strata.png" width="300" />
+  <img src="strata.png" width="400" />
 </p>
 
 # Strata C2

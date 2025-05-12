@@ -15,6 +15,7 @@ find_package(Qt6 COMPONENTS
         REQUIRED)
 
 add_executable(StrataC2 main.cpp
+        resources.rc
         windows/teamserverwindow.cpp
         windows/teamserverwindow.h
         windows/teamserverwindow.ui

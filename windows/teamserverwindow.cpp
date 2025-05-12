@@ -29,7 +29,7 @@ TeamserverWindow::TeamserverWindow(QWidget *parent) :
     // UI windows
     ui_listeners = new ListenersDialog(this, this);
 
-    // Last live timer
+    // Last alive timer
     QTimer* timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &TeamserverWindow::update_last_alive);
     timer->start(1000);  // Trigger every 1000 ms (1 second)
