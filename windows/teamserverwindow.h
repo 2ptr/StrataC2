@@ -31,11 +31,14 @@ public:
 
     explicit TeamserverWindow(QWidget *parent = nullptr);
     ~TeamserverWindow() override;
-
+signals:
+    void agentUpdated();
 private slots:
     void on_createListenerButton_clicked();
 
     void on_agentTable_itemClicked();
+
+    void on_agentTable_itemSelectionChanged();
 
     void on_commandLine_returnPressed();
 

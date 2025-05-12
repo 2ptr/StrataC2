@@ -2,6 +2,7 @@
 #include "../windows/teamserverwindow.h"
 #include "../windows/ui_TeamserverWindow.h"
 #include "TableWidgets.h"
+#include "../classes/Constants.h"
 
 CommandsTextEdit::CommandsTextEdit(QWidget *parent) : QTextEdit(parent) {
     this->setReadOnly(true);
@@ -12,7 +13,7 @@ void CommandsTextEdit::setMainWindow(TeamserverWindow* main_window) {
 }
 
 void CommandsTextEdit::repopulateItems() {
-    clear();
+    setText("");
     // First, check if selectedItem() is nullptr
     AgentTableWidgetItem *selected_item = mainWindow->ui->agentTable->selectedItem();
     if (selected_item == nullptr) {
@@ -34,11 +35,11 @@ void CommandsTextEdit::repopulateItems() {
 }
 
 std::string CommandsTextEdit::format_command(std::string command) {
-    if (command.find("[*]") != std::string::npos) {
+    if (command == MSG_COMMAND_QUEUED) {
         command = "<font color='gray'>" + command + "</font>\n";
-    } else if (command.find("[+]") != std::string::npos) {
+    } else if (command == MSG_OUTPUT_RECEIVED) {
         command = "<font color='#12AD2B'>" + command + "</font>\n";
-    } else if (command.find("[~]") != std::string::npos) {
+    } else if (command == MSG_COMMAND_SENT) {
         command = "<font color='yellow'>" + command + "</font>\n";
     } else {
         command += "\n";

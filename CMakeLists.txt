@@ -29,6 +29,7 @@ add_executable(StrataC2 main.cpp
         classes/Listeners.cpp
         components/TextEditWidgets.h
         components/TextEditWidgets.cpp
+        classes/Constants.h
 )
 target_link_libraries(StrataC2
     Qt::Core

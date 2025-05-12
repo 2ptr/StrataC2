@@ -23,7 +23,7 @@ public:
     int sleep;
     int last_alive;
     std::vector<std::string> cmd_history;
-    std::vector<std::map<std::string,std::string>> cmd_queue;
+    std::vector<std::map<std::string, std::vector<std::string>>> cmd_queue;
 
     Agent(const std::string& id, const std::string& hostname, const std::string& user, const std::string& process, const std::string& ip)
         : id(id), hostname(hostname), user(user), process(process), ip(ip), sleep(0), last_alive(0) {

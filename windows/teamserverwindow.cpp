@@ -5,6 +5,7 @@
 
 #include "teamserverwindow.h"
 #include "ui_TeamserverWindow.h"
+#include "../classes/Constants.h"
 
 
 TeamserverWindow::TeamserverWindow(QWidget *parent) :
@@ -29,7 +30,10 @@ TeamserverWindow::TeamserverWindow(QWidget *parent) :
     connect(timer, &QTimer::timeout, this, &TeamserverWindow::update_last_alive);
     timer->start(1000);  // Trigger every 1000 ms (1 second)
 
-    this->show();
+    // Signals
+    connect(this, &TeamserverWindow::agentUpdated, this, &TeamserverWindow::on_agentTable_itemSelectionChanged);
+
+    this->showMaximized();
 }
 
 // SLOTS
@@ -38,6 +42,10 @@ void TeamserverWindow::on_createListenerButton_clicked() {
 }
 
 void TeamserverWindow::on_agentTable_itemClicked() {
+    ui->cmdsTextEdit->repopulateItems();
+}
+
+void TeamserverWindow::on_agentTable_itemSelectionChanged() {
     ui->cmdsTextEdit->repopulateItems();
 }
 
@@ -51,10 +59,31 @@ void TeamserverWindow::on_commandLine_returnPressed() {
     std::string cmd = ui->commandLine->text().toStdString();
     ui->commandLine->clear();
 
+    std::istringstream iss(cmd);
+    std::string word;
+
+    // Split into words
+    std::vector<std::string> tokens;
+    while (iss >> word) {
+        tokens.push_back(word);
+    }
+
+    std::map<std::string, std::vector<std::string>> cmd_entry;
+    // Extract command and args
+    if (!tokens.empty()) {
+        std::string command = tokens[0];
+        std::vector<std::string> args(tokens.begin() + 1, tokens.end());
+
+        // Example: build a map for cmd_queue
+        cmd_entry[command] = args;
+    }
+
     // Find the actual agent in g_Agents and update it
     for (Agent& agent : g_Agents) {
         if (agent.id == selected_id) {
-            agent.cmd_history.push_back(cmd);
+            agent.cmd_history.push_back(">>> " + cmd);
+            agent.cmd_history.push_back(MSG_COMMAND_QUEUED);
+            agent.cmd_queue.push_back(cmd_entry);
             break;
         }
     }
