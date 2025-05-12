@@ -37,13 +37,17 @@ void HTTPListenerThread::run() {
         }
         // Agent exists – reset last_alive
         it->last_alive = 0;
-
-        // Extract output
-
         // Check if agent has queue and update history/activity
         if (!it->cmd_queue.empty()) {
             main_window->log_activity("Issued commands for Agent " + it->id);
             it->cmd_history.push_back(MSG_COMMAND_SENT);
+        }
+        // Extract output
+        if (full.data.size() > 0) {
+            it->cmd_history.push_back(MSG_OUTPUT_RECEIVED);
+            for (const std::string& output : full.data) {
+                it->cmd_history.push_back(output);
+            }
         }
         // Send and reset queue
         res.set_content(nlohmann::json(it->cmd_queue).dump(), "application/json");
