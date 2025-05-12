@@ -8,6 +8,7 @@
 #include "../classes/Agents.h"
 #include "../classes/Listeners.h"
 #include "listenersdialog.h"
+#include "../classes/CommandHelper.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -25,6 +26,7 @@ public:
     ListenersDialog *ui_listeners;
     std::vector<Listener> g_Listeners;
     std::vector<Agent> g_Agents;
+    CommandHelper *commandHelper;
 
     void refresh_listeners();
     void log_activity(std::string msg);

@@ -30,6 +30,8 @@ add_executable(StrataC2 main.cpp
         components/TextEditWidgets.h
         components/TextEditWidgets.cpp
         classes/Constants.h
+        classes/CommandHelper.cpp
+        classes/CommandHelper.h
 )
 target_link_libraries(StrataC2
     Qt::Core

@@ -5,13 +5,17 @@
 
 #include "teamserverwindow.h"
 #include "ui_TeamserverWindow.h"
-#include "../classes/Constants.h"
+#include "../classes/CommandHelper.h"
 
 
 TeamserverWindow::TeamserverWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TeamserverWindow) {
     ui->setupUi(this);
+
+    // Helpers
+    commandHelper = new CommandHelper();
+    commandHelper->setMainWindow(this);
 
     // Bind tables to self-reference
     ui->agentTable->setMainWindow(this);
@@ -50,46 +54,7 @@ void TeamserverWindow::on_agentTable_itemSelectionChanged() {
 }
 
 void TeamserverWindow::on_commandLine_returnPressed() {
-    // Get the selected agent
-    AgentTableWidgetItem* selected_item = ui->agentTable->selectedItem();
-    if (selected_item == nullptr) {
-        return;  // No item selected, exit early
-    }
-    std::string selected_id = selected_item->data->id;
-    std::string cmd = ui->commandLine->text().toStdString();
-    ui->commandLine->clear();
-
-    std::istringstream iss(cmd);
-    std::string word;
-
-    // Split into words
-    std::vector<std::string> tokens;
-    while (iss >> word) {
-        tokens.push_back(word);
-    }
-
-    std::map<std::string, std::vector<std::string>> cmd_entry;
-    // Extract command and args
-    if (!tokens.empty()) {
-        std::string command = tokens[0];
-        std::vector<std::string> args(tokens.begin() + 1, tokens.end());
-
-        // Example: build a map for cmd_queue
-        cmd_entry[command] = args;
-    }
-
-    // Find the actual agent in g_Agents and update it
-    for (Agent& agent : g_Agents) {
-        if (agent.id == selected_id) {
-            agent.cmd_history.push_back(">>> " + cmd);
-            agent.cmd_history.push_back(MSG_COMMAND_QUEUED);
-            agent.cmd_queue.push_back(cmd_entry);
-            break;
-        }
-    }
-
-    // Update UI
-    ui->cmdsTextEdit->repopulateItems();
+    commandHelper->handle_command();
 }
 
 void TeamserverWindow::update_last_alive() {

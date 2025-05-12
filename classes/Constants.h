@@ -9,5 +9,30 @@
 const std::string MSG_COMMAND_SENT = "[*] Commands sent to Agent...\n";
 const std::string MSG_OUTPUT_RECEIVED = "[+] Received command output:\n";
 const std::string MSG_COMMAND_QUEUED = "[*] Command added to Agent's queue.\n";
+const std::string CMD_HELP = "============ Local commands ============\n"
+"help - Display this help message.\n"
+"queue - View Agent command queue.\n"
+"\n"
+"============ Agent commands ============\n"
+"sleep - Set Agent sleep time.\n"
+"die - Kill Agent.\n"
+"\n"
+"============ Built-in commands ============\n"
+"pwd - Print working directory.\n"
+"ls - List working directory.\n"
+"cd - Change working directory.\n"
+"cat - Read file.\n"
+"rm - Remove file.\n"
+"cp - Copy file.\n"
+"mv - Move file.\n"
+"shell - Execute shell command. -- DANGER\n"
+"powershell - Execute powershell command. -- DANGER\n"
+"\n"
+"============ .NET commands ============\n"
+"assembly list - List imported .NET assemblies.\n"
+"assembly rm [assembly name] - Remove imported .NET assembly.\n"
+"assembly [assembly name] [arguments] - Execute .NET assembly with arguments.\n"
+"========================================";
+
 
 #endif //CONSTANTS_H
