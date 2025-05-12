@@ -27,8 +27,9 @@ void CommandHelper::handle_command() {
         return;
     }
 
-    // Retrieve input
+    // Retrieve input / ux
     std::string user_input = mainWindow->ui->commandLine->text().toStdString();
+    selected_agent->cmd_history.push_back(">>> " + user_input);
     mainWindow->ui->commandLine->clear();
     // Split into words
     std::istringstream iss(user_input);
@@ -50,8 +51,7 @@ void CommandHelper::handle_command() {
     // PREPROCESSING AND ISSUING FOR COMMANDS
     if (command == "help") {
         selected_agent->cmd_history.push_back(CMD_HELP);
-    } else {
-        selected_agent->cmd_history.push_back(">>> " + user_input);
+    } else {;
         selected_agent->cmd_queue.push_back(cmd_entry);
         selected_agent->cmd_history.push_back(MSG_COMMAND_QUEUED);
     }
