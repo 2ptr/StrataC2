@@ -9,7 +9,6 @@
 void HTTPListenerThread::run() {
 
     svr.Post(R"(.*)",[this](const httplib::Request &req, httplib::Response &res) {
-    printf("Received POST to: %s\n", req.path.c_str());
     try {
         // Parse the JSON data from the request body
         auto json_data = nlohmann::json::parse(req.body);
@@ -28,9 +27,9 @@ void HTTPListenerThread::run() {
                             full.metadata.user,
                             full.metadata.process,
                             full.metadata.ip);
-            new_agent.cmd_history.push_back("[*] Agent connected - " + full.metadata.user + " on " + full.metadata.hostname + "(" + full.metadata.id + ")\n");
+            new_agent.cmd_history.push_back("[*] Agent " + full.metadata.id +  " connected - " + full.metadata.user + " on " + full.metadata.hostname);
             main_window->g_Agents.push_back(new_agent);
-            main_window->log_activity("New Agent connected - " + full.metadata.id);
+            main_window->log_activity("Agent " + full.metadata.id + " connected.");
             // Refresh for new addition
             main_window->ui->agentTable->repopulateItems();
             return httplib::Server::HandlerResponse::Handled;

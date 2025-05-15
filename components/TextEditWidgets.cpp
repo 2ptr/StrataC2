@@ -21,6 +21,7 @@ void CommandsTextEdit::repopulateItems() {
     }
 
     std::string selected_id = selected_item->data->id;
+    mainWindow->ui->agentLabel->setText(QString::fromStdString("Agent: " + selected_id));
 
     // Find the actual agent in g_Agents and read from it
     for (Agent& agent : mainWindow->g_Agents) {
