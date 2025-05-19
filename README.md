@@ -14,6 +14,8 @@ A command-and-control framework written in C++ (Qt 6).
 - Agent
   - EXE/DLL Generation via GUI
   - Shellcode generation - planning to do sRDI with custom stub
+  - BOFs
+  - Assemblies
 - Server
   - Azure blob storage support
   - Logging to database
@@ -21,3 +23,4 @@ A command-and-control framework written in C++ (Qt 6).
 - C2
   - Custom serializers (no more nlohmann JSON)
   - In-transit encryption
+  - Cross-compatible
