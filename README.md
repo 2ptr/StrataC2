@@ -6,18 +6,18 @@
 
 A command-and-control framework written in C++ (Qt 6).
 
-## Agent
-
-The agent is written in C. Shellcode generated via sRDI.
+<p align="center">
+  <img src="GUI.png" width="700" />
+</p>
 
 ## To-Do:
 - Agent
-  - EXE generation
-  - DLL generation
-  - Shellcode generation
+  - EXE/DLL Generation via GUI
+  - Shellcode generation - planning to do sRDI with custom stub
 - Server
   - Azure blob storage support
   - Logging to database
   - Assembly upload and storage
 - C2
-  - AES encryption for data in transit
+  - Custom serializers (no more nlohmann JSON)
+  - In-transit encryption
