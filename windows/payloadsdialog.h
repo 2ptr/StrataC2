@@ -29,6 +29,7 @@ explicit PayloadsDialog(QWidget *parent = nullptr, TeamserverWindow *main_window
 private slots:
     void on_buttonBox_accepted();
 
+void on_buttonBox_rejected();
 };
 
 

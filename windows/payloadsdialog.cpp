@@ -70,7 +70,11 @@ void PayloadsDialog::on_buttonBox_accepted() {
         prepare_http(listener);
     }
 
-    // this->close();
+    this->close();
+}
+
+void PayloadsDialog::on_buttonBox_rejected() {
+    this->close();
 }
 
 void PayloadsDialog::prepare_http(Listener listener) {
@@ -115,10 +119,26 @@ void PayloadsDialog::prepare_http(Listener listener) {
 }
 
 bool PayloadsDialog::compile_payload(QString sourcedir) {
+    // Setup QProcess
     QProcess *process = new QProcess(this);
     process->setWorkingDirectory(sourcedir);
-    process->setProgram("cmd");
-    process->setArguments({"/c", "compile.bat"});
+    QProcessEnvironment env = process->processEnvironment();
+    env.remove("PATH");
+    env.insert("PATH", "C:\\msys64\\mingw64\\bin");
+    process->setProgram("mingw32-make");
+
+    // Collect stdout/stderr
+    connect(process, &QProcess::readyReadStandardOutput, [=]() {
+        QString output = process->readAllStandardOutput();
+        ui->outputTextEdit->append(output);
+    });
+
+    connect(process, &QProcess::readyReadStandardError, [=]() {
+        QString output = process->readAllStandardError();
+        ui->outputTextEdit->append("[ERROR] " + output);
+    });
+
+    // Launch and wait
     process->start();
     process->waitForFinished();
     if (process->exitCode() == 0) {
