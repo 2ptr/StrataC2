@@ -8,6 +8,7 @@
 #include "../classes/Agents.h"
 #include "../classes/Listeners.h"
 #include "listenersdialog.h"
+#include "payloadsdialog.h"
 #include "../classes/CommandHelper.h"
 
 QT_BEGIN_NAMESPACE
@@ -24,6 +25,7 @@ class TeamserverWindow : public QMainWindow {
 public:
     Ui::TeamserverWindow *ui;
     ListenersDialog *ui_listeners;
+    PayloadsDialog *ui_payloads;
     std::vector<Listener> g_Listeners;
     std::vector<Agent> g_Agents;
     CommandHelper *commandHelper;
@@ -37,6 +39,8 @@ signals:
     void agentUpdated();
 private slots:
     void on_createListenerButton_clicked();
+
+    void on_actionGenerate_triggered();
 
     void on_agentTable_itemClicked();
 

@@ -43,15 +43,24 @@ private:
     int bind_port;
 };
 
+enum ListenerTypes {
+    HTTP,
+    HTTPS,
+    AZURE
+};
+
 ///
 /// LISTENER CLASS
 ///
 class Listener {
 public:
     std::string name;
+    ListenerTypes type;
     std::string bind_address;
-    TeamserverWindow *main_window = nullptr;
     int bind_port;
+    std::map<std::wstring, int> callbacks;
+
+    TeamserverWindow *main_window = nullptr;
     HTTPListenerThread* listenerThread = nullptr;  // The QThread that runs HTTP servers
 
     bool tryHttpStartListener() {
@@ -78,8 +87,9 @@ public:
         main_window = mw;
     }
 
-    Listener(const std::string& name, const std::string& bind_address, const int bind_port)
-        : name(name), bind_address(bind_address), bind_port(bind_port) {}
+    Listener(const std::string& name, const ListenerTypes type, const std::string& bind_address, const int bind_port, const std::map<std::wstring, int>& callbacks)
+        : name(name), type(), bind_address(bind_address), bind_port(bind_port), callbacks(callbacks) {
+    }
 };
 
 

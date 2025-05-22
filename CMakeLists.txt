@@ -33,6 +33,9 @@ add_executable(StrataC2 main.cpp
         classes/Constants.h
         classes/CommandHelper.cpp
         classes/CommandHelper.h
+        windows/payloadsdialog.cpp
+        windows/payloadsdialog.h
+        windows/payloadsdialog.ui
 )
 target_link_libraries(StrataC2
     Qt::Core

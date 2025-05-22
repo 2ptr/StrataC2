@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PayloadsDialog</class>
+ <widget class="QDialog" name="PayloadsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>492</width>
+    <height>499</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>payloadsdialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* === Global Base === */
+* {
+    font-family: &quot;Consolas&quot;, &quot;JetBrains Mono&quot;, &quot;monospace&quot;;
+    font-size: 11pt;
+    color: #dcdcdc;
+    background: none;
+}
+
+/* === Main Background === */
+QMainWindow, QWidget {
+    background-color: #1e1e1e;
+    border: none;
+}
+
+/* === QMenuBar === */
+QMenuBar {
+    background-color: #252526;
+    color: #dcdcdc;
+    padding: 4px;
+}
+QMenuBar::item {
+    padding: 3px 10px;
+}
+QMenuBar::item:selected {
+    background-color: #007acc;
+    color: white;
+}
+/* === QMenu === */
+QMenu {
+    background-color: #2d2d30;
+    color: #dcdcdc;
+    border: 1px solid #3c3c3c;
+}
+QMenu::item:selected {
+    background-color: #007acc;
+    color: white;
+}
+
+/* === QPushButton === */
+QPushButton {
+    background-color: #3c3c3c;
+    border: 1px solid #555;
+    padding: 6px 12px;
+    color: #dcdcdc;
+}
+QPushButton:hover {
+    background-color: #444;
+}
+QPushButton:pressed {
+    background-color: #222;
+}
+QPushButton:disabled {
+    background-color: #2a2a2a;
+    color: #777;
+    border-color: #444;
+}
+
+/* === QLineEdit / QTextEdit === */
+QLineEdit, QTextEdit {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #ffffff;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
+    padding: 4px;
+}
+
+QTextEdit{
+	font-size: 9px;
+}
+
+/* === QPlainTextEdit (e.g., console output) === */
+QPlainTextEdit {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #ffffff;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
+}
+
+/* === QTableWidget / QTableView === */
+QTableWidget, QTableView {
+    background-color: #262626;
+    color: #ffffff;
+    border: 1px solid #444;
+    gridline-color: #666;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
+    alternate-background-color: #1e1e1e;
+}
+QHeaderView::section {
+    background-color: #333;
+    color: #dcdcdc;
+    border: 1px solid #444;
+    padding: 4px;
+}
+
+/* === QListWidget / QListView === */
+QListWidget, QListView {
+    background-color: #262626;
+    border: 1px solid #444;
+    color: #ffffff;
+}
+QListWidget::item:selected, QListView::item:selected {
+    background-color: #007acc;
+    color: #ffffff;
+}
+
+/* === QTabWidget === */
+QTabWidget::pane {
+    border: 1px solid #3c3c3c;
+    padding: 4px;
+}
+QTabBar::tab {
+    background-color: #2d2d30;
+    color: #dcdcdc;
+    padding: 6px 12px;
+    border: 1px solid #3c3c3c;
+    border-bottom: none;
+}
+QTabBar::tab:selected {
+    background-color: #1e1e1e;
+    color: white;
+    border: 1px solid #007acc;
+    border-bottom: none;
+}
+QTabBar::tab:hover {
+    background-color: #383838;
+}
+
+/* === QToolBar === */
+QToolBar {
+    background-color: #2d2d30;
+    border-bottom: 1px solid #3c3c3c;
+    spacing: 6px;
+}
+QToolButton {
+    background-color: #2d2d30;
+    border: none;
+    padding: 6px;
+    margin: 2px;
+    color: #dcdcdc;
+}
+QToolButton:hover {
+    background-color: #3a3a3a;
+}
+QToolButton:pressed {
+    background-color: #007acc;
+    color: #ffffff;
+}
+
+/* === QScrollBar === */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: #1e1e1e;
+    border: none;
+    margin: 0px;
+    width: 12px;
+    height: 12px;
+}
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #555;
+    min-height: 20px;
+    min-width: 20px;
+    border-radius: 6px;
+}
+QScrollBar::handle:hover {
+    background: #007acc;
+}
+QScrollBar::add-line, QScrollBar::sub-line {
+    height: 0px;
+    width: 0px;
+}
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+
+/* === QCheckBox === */
+QCheckBox {
+    color: #dcdcdc;
+}
+QCheckBox::indicator {
+    width: 14px;
+    height: 14px;
+}
+QCheckBox::indicator:unchecked {
+    border: 1px solid #555;
+    background-color: #2a2a2a;
+}
+QCheckBox::indicator:checked {
+    background-color: #007acc;
+    border: 1px solid #007acc;
+}
+
+/* === QComboBox === */
+QComboBox {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    padding: 4px;
+    color: #ffffff;
+}
+QComboBox:hover {
+    border: 1px solid #007acc;
+}
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left: 1px solid #555;
+    background-color: #2a2a2a;
+}
+QComboBox QAbstractItemView {
+    background-color: #262626;
+    color: #ffffff;
+    selection-background-color: #007acc;
+    selection-color: #ffffff;
+}
+
+/* === QGroupBox === */
+QGroupBox {
+    border: 1px solid #3c3c3c;
+    margin-top: 20px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 4px;
+    color: #dcdcdc;
+}
+
+Line{
+color:white;
+border: 1px solid #444;
+}
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" columnstretch="5,3,10">
+   <item row="4" column="1">
+    <widget class="QPushButton" name="cmakeButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset theme="QIcon::ThemeIcon::FolderNew"/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QComboBox" name="listenerBox"/>
+   </item>
+   <item row="6" column="0" colspan="3">
+    <widget class="QTextEdit" name="outputTextEdit">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QComboBox" name="fileFormatBox"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>Sleep (s)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QLineEdit" name="cmakeLineEdit"/>
+   </item>
+   <item row="3" column="2">
+    <widget class="QSpinBox" name="sleepBox">
+     <property name="minimum">
+      <number>5</number>
+     </property>
+     <property name="maximum">
+      <number>2000</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Listener</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>File Format</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Cmake Path</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Consolas</family>
+       <pointsize>11</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Generate Payload</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Compile output</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

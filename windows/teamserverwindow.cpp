@@ -12,6 +12,8 @@ TeamserverWindow::TeamserverWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TeamserverWindow) {
     ui->setupUi(this);
+    QCoreApplication::setOrganizationName("2ptr");
+    QCoreApplication::setApplicationName("StrataC2");
 
     // Helpers
     commandHelper = new CommandHelper();
@@ -28,14 +30,16 @@ TeamserverWindow::TeamserverWindow(QWidget *parent) :
 
     // UI windows
     ui_listeners = new ListenersDialog(this, this);
+    ui_payloads = new PayloadsDialog(this, this);
 
     // Last alive timer
     QTimer* timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &TeamserverWindow::update_last_alive);
-    timer->start(1000);  // Trigger every 1000 ms (1 second)
+    timer->start(1000);  // Trigger every 1 second
 
     // Signals
     connect(this, &TeamserverWindow::agentUpdated, this, &TeamserverWindow::on_agentTable_itemSelectionChanged);
+
 
     this->showMaximized();
 }
@@ -43,6 +47,11 @@ TeamserverWindow::TeamserverWindow(QWidget *parent) :
 // SLOTS
 void TeamserverWindow::on_createListenerButton_clicked() {
     ui_listeners->show();
+}
+
+void TeamserverWindow::on_actionGenerate_triggered() {
+    ui_payloads->populate_fields();
+    ui_payloads->show();
 }
 
 void TeamserverWindow::on_agentTable_itemClicked() {

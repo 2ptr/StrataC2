@@ -10,6 +10,12 @@
     <height>867</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Consolas</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Strata C2</string>
   </property>
@@ -35,13 +41,12 @@ QMenuBar {
     padding: 4px;
 }
 QMenuBar::item {
-    padding: 6px 12px;
+    padding: 3px 10px;
 }
 QMenuBar::item:selected {
     background-color: #007acc;
     color: white;
 }
-
 /* === QMenu === */
 QMenu {
     background-color: #2d2d30;
@@ -562,13 +567,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1329</width>
-     <height>39</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="defaultUp">
     <bool>false</bool>
    </property>
    <widget class="QMenu" name="menuPayloads">
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>Payloads</string>
     </property>
@@ -605,11 +616,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <extends>QTableWidget</extends>
    <header>../../../components/TableWidgets.h</header>
   </customwidget>
- <customwidget>
-     <class>CommandsTextEdit</class>
-     <extends>QTextEdit</extends>
-     <header>../../../components/TextEditWidgets.h</header>
- </customwidget>
+  <customwidget>
+   <class>CommandsTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>../../../components/TextEditWidgets.h</header>
+  </customwidget>
  </customwidgets>
  <resources/>
  <connections/>

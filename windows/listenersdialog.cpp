@@ -72,10 +72,30 @@ void ListenersDialog::populate_fields() {
 }
 
 void ListenersDialog::on_buttonBox_accepted() {
+    // Extract callbacks
+    QStringList lines = ui->agentCallbacksBox->toPlainText().split("\n", Qt::SkipEmptyParts);
+    std::map<std::wstring, int> callbacks;
+
+    for (const QString& line : lines) {
+        QUrl url(line.trimmed());
+        if (!url.isValid() || url.host().isEmpty() || url.port() <= 0) {
+            continue;  // Optionally: log or show a warning
+        }
+
+        std::string host = url.host().toStdString();
+        int port = url.port();
+
+        // Convert host to wstring
+        std::wstring w_host(host.begin(), host.end());
+
+        callbacks[w_host] = port;
+    }
     Listener potential_listener(
         ui->listenerNameBox->text().toStdString(),
+        HTTP,
         ui->bindInterfaceBox->currentText().toStdString(),
-        ui->bindPortBox->value()
+        ui->bindPortBox->value(),
+        callbacks
     );
     potential_listener.setMainWindow(main_window);
     if (potential_listener.tryHttpStartListener()) {
