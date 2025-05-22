@@ -1,3 +1,12 @@
 [submodule "agents"]
 	path = agents
 	url = https://github.com/2ptr/StrataC2-Agents
+[submodule "asdf"]
+	path = agents
+	url = https://github.com/2ptr/StrataC2-Agents
+[submodule "as1df"]
+	path = agents
+	url = https://github.com/2ptr/StrataC2-Agents
+[submodule "as1333df"]
+	path = agents
+	url = https://github.com/2ptr/StrataC2-Agents

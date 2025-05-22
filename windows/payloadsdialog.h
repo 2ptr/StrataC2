@@ -22,14 +22,11 @@ public:
 
     void populate_fields();
     void prepare_http(Listener listener);
-
-    bool compile_payload(QString sourcedir, QStringList args);
+    bool compile_payload(QString sourcedir);
 
 explicit PayloadsDialog(QWidget *parent = nullptr, TeamserverWindow *main_window = nullptr);
     ~PayloadsDialog() override;
 private slots:
-
-    void on_cmakeButton_clicked();
     void on_buttonBox_accepted();
 
 };

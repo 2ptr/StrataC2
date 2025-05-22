@@ -7,6 +7,7 @@
 #include "payloadsdialog.h"
 
 #include <fstream>
+#include "../classes/Constants.h"
 #include <QSettings>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -39,7 +40,6 @@ PayloadsDialog::PayloadsDialog(QWidget *parent, TeamserverWindow *main_window) :
 void PayloadsDialog::populate_fields() {
     ui->fileFormatBox->clear();
     ui->listenerBox->clear();
-    ui->outputTextEdit->clear();
 
     // Load listeners
     for (Listener& listener : main_window->g_Listeners) {
@@ -47,31 +47,14 @@ void PayloadsDialog::populate_fields() {
     }
 
     // Load filetypes
-    ui->fileFormatBox->addItem("Windows exe");
-    ui->fileFormatBox->addItem("Windows dll");
-
-    // Load cmake path
-    QSettings settings;
-    QString cmakePath = settings.value("cmakePath", "").toString();
-    ui->cmakeLineEdit->setText(cmakePath);
-}
-
-void PayloadsDialog::on_cmakeButton_clicked() {
-    QString cmakePath = QFileDialog::getOpenFileName(this, "Select CMake Executable", "C:/", "CMake (cmake.exe)");
-    ui->cmakeLineEdit->setText(cmakePath);
+    ui->fileFormatBox->addItem(EXE_FILETYPE.data());
+    ui->fileFormatBox->addItem(DLL_FILETYPE.data());
 }
 
 void PayloadsDialog::on_buttonBox_accepted() {
     // Check valid
     if (ui->listenerBox->currentText().isEmpty() || ui->fileFormatBox->currentText().isEmpty()){
         return;
-    }
-
-    // Save the new cmake path if we can
-    QString cmakePath = ui->cmakeLineEdit->text();
-    if (!cmakePath.isEmpty()) {
-        QSettings settings;
-        settings.setValue("cmakePath", cmakePath);
     }
 
     // Get the listener instance
@@ -87,12 +70,12 @@ void PayloadsDialog::on_buttonBox_accepted() {
         prepare_http(listener);
     }
 
-    this->close();
+    // this->close();
 }
 
 void PayloadsDialog::prepare_http(Listener listener) {
     // Update sleep and callbacks
-    std::ifstream template_file("../agents/http/conf/Config.template");
+    std::ifstream template_file(HTTP_TEMPLATE_FILEPATH);
     std::stringstream buffer;
     buffer << template_file.rdbuf();
     std::string file_contents = buffer.str();
@@ -106,23 +89,18 @@ void PayloadsDialog::prepare_http(Listener listener) {
     callbacks_map += "}";
 
     // Replace placeholders
-    file_contents = replaceAll(file_contents, "@SLEEP_VALUE@", std::to_string(ui->sleepBox->value()*1000));
-    file_contents = replaceAll(file_contents, "@CALLBACKS_MAP@", callbacks_map);
+    file_contents = replaceAll(file_contents, SLEEP_TEMPLATE_MARKER, std::to_string(ui->sleepBox->value()*1000));
+    file_contents = replaceAll(file_contents, CALLBACKS_TEMPLATE_MARKER, callbacks_map);
 
     // Write new config
-    std::ofstream output_file("../agents/http/conf/Config.cpp");
+    std::ofstream output_file(HTTP_CONFIG_FILEPATH);
     output_file << file_contents;
+    output_file.close();
 
-    // Compile
-    QString sourceDir = "../agents/http";
-    QStringList args = {
-        "--build", "./build",
-        "--target", "strata-exe",
-        "-j", "10"
-    };
-    if (compile_payload(sourceDir, args)) {
+    // Compile and copy
+    if (compile_payload(HTTP_SRC_DIR.data())) {
         QString destinationPath = QFileDialog::getSaveFileName(nullptr, "Save Executable", "strata.exe");
-        QString builtExecutablePath = "../agents/http/build/strata-exe.exe";
+        QString builtExecutablePath = "../agents/http/strata-exe.exe";
         if (QFile::exists(destinationPath)) {
             QFile::remove(destinationPath);
         }
@@ -136,38 +114,18 @@ void PayloadsDialog::prepare_http(Listener listener) {
     }
 }
 
-bool PayloadsDialog::compile_payload(QString sourcedir, QStringList args) {
-    // Setup
-    QString cmake_path = ui->cmakeLineEdit->text();
+bool PayloadsDialog::compile_payload(QString sourcedir) {
     QProcess *process = new QProcess(this);
-    process->setProgram(cmake_path);
     process->setWorkingDirectory(sourcedir);
-
-    // Setup signals
-    connect(process, &QProcess::readyReadStandardOutput, [=]() {
-        QString output = process->readAllStandardOutput();
-        ui->outputTextEdit->append(output);
-    });
-    connect(process, &QProcess::readyReadStandardError, [=]() {
-        QString output = process->readAllStandardError();
-        ui->outputTextEdit->append("[stderr] " + output);
-    });
-
-    ui->outputTextEdit->append("Starting build...");
-
-    // Configure
-    process->setArguments(QStringList() << "-S" << "." << "-B" << "./build" << "-G" << "MinGW Makefiles");
+    process->setProgram("cmd");
+    process->setArguments({"/c", "compile.bat"});
     process->start();
     process->waitForFinished();
-
-    // Compile
-    process->setArguments(args);
-    process->start();
-    process->waitForFinished();
-
     if (process->exitCode() == 0) {
+        delete process;
         return true;
     }
+    delete process;
     return false;
 }
 
